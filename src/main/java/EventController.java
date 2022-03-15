@@ -16,12 +16,13 @@ public class EventController {
 
     float scanLineAlpha = 0;
 
-    BSTree<Segment> scanLineStatus = new BSTree<>(); // 应该是一个搜索树 but 搜索树如何实时排序？？？
+    BSTree<Segment> scanLineStatus = new BSTree<>();
 
     PriorityQueue<Event> events = new PriorityQueue<>(); // 应该是一个优先队列
 
     void addSegment(Segment segment){
         if (segment.start.angle>segment.end.angle){
+//            System.out.println("split: " +segment);
             Point intercept1 = segment.getXIntercept();
             Point intercept2 = segment.getXIntercept();
             intercept2.angle-=Math.PI*2;
@@ -31,7 +32,7 @@ public class EventController {
         else segments.add(segment);
     }
 
-    
+
     void find() {
         for (Segment s : segments) {
             Event se = new Event(s, EventType.Start, s.start);
@@ -41,9 +42,9 @@ public class EventController {
         }
         while (!events.isEmpty()) {
             Event e = events.poll();
-            System.out.println(e.type);
-            System.out.println(e.segment.name);
-            System.out.println(e.getAngle());
+//            System.out.println(e.type);
+//            System.out.println(e.segment.name);
+//            System.out.println(e.getAngle());
             scanLineAlpha = e.getAngle();
             switch (e.type) {
                 case Start:

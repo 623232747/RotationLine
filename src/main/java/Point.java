@@ -1,13 +1,14 @@
 public class Point implements Comparable<Point> {
-    static Point polar = new Point(0, 0);
+    static float px = 0;
+    static float py = 0;
 
 
     public float getX() {
-        return x-polar.x;
+        return x-px;
     }
 
     public float getY() {
-        return y-polar.y;
+        return y-py;
     }
 
     private float x;
@@ -18,7 +19,7 @@ public class Point implements Comparable<Point> {
     Point(float x, float y) {
         this.x = x;
         this.y = y;
-        this.angle = (float) (Math.atan2(y,x));
+        this.angle = (float) (Math.atan2(y-py,x-px));
     }
 
 
@@ -34,4 +35,12 @@ public class Point implements Comparable<Point> {
             return angle > o.angle?1:-1;
     }
 
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                ", angle=" + angle +
+                '}';
+    }
 }
