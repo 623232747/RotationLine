@@ -46,9 +46,11 @@ public class EventController {
 //            System.out.println(e.segment.name);
 //            System.out.println(e.getAngle());
             scanLineAlpha = e.getAngle();
+            Event next =events.peek();
             switch (e.type) {
                 case Start:
                     scanLineStatus.insert(e.segment);
+
                     Segment min = scanLineStatus.minimum();
                     min.isVisiable=true;
                     System.out.println(min);
